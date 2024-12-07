@@ -3,6 +3,12 @@ import { DUMMY_USERS } from './dummy-users';
 
 const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 
+interface User {
+  id: string;
+  avatar: string;
+  name: string;
+}
+
 @Component({
   selector: 'app-users',
   standalone: true,
@@ -11,12 +17,8 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
   styleUrl: './users.component.css'
 })
 export class UsersComponent {
-  @Input({required: true}) user!: {
-    id: string,
-    avatar: string,
-    name: string
-  }
-
+  @Input({required: true}) user!: User;
+  @Input({required: true}) selected!: boolean;
   @Output() select = new EventEmitter(); 
 
   get imagePath(){
